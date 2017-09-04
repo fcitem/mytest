@@ -1,6 +1,9 @@
 package com.arraylist.test;
 
-public class testArraylist {
+import java.util.ArrayList;
+import java.util.List;
+
+public class TestArraylist {
 
 	public static void main(String[] args) {
 //		ArrayList<Integer> list=new ArrayList<Integer>();
@@ -12,12 +15,13 @@ public class testArraylist {
 //		System.out.println(list.size());
 		String name=new String("herllo");     //变量存储的是引用，而不是引用本身！及存的是引用字符串的引用的地址
 		System.out.println(name.getClass().hashCode());
-		new testArraylist().test(name);
+		new TestArraylist().test(name);
 		System.out.println(name.getClass().hashCode());
 		System.out.println(name);
 		StringBuilder builder=new StringBuilder("sds");
-		new testArraylist().testStringBuilder(builder);
+		new TestArraylist().testStringBuilder(builder);
 		System.out.println(builder);
+		TestArraylist.testIterator();
 	}
 	public void test(String str){
 		str="fc";
@@ -25,5 +29,16 @@ public class testArraylist {
 	}
 	public void testStringBuilder(StringBuilder builder){
 		builder.append("sds");
+	}
+	public static void testIterator(){
+		List<String> list=new ArrayList<>();
+		list.add("1");
+		list.add("2");
+		list.add("3");
+		for (String string : list) {
+			if("2".equals(string)){
+				list.remove(string);
+			}
+		}
 	}
 }

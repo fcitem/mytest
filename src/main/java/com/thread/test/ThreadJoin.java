@@ -1,9 +1,8 @@
 package com.thread.test;
 
-/**
+/**测试join方法
  * @author fengchao
  * @data 2017年3月24日
- * 测试join方法
  */
 public class ThreadJoin {
 

@@ -6,6 +6,7 @@ package com.assertdebug.test;
  * 测试断言机制，默认运行时是关闭的，用-ea开启
  */
 public class Assert {
+	String str="fcfcfc";
 	public static void test(int number){
 		assert number>0:"assert faile";
 		System.out.println("assert success");

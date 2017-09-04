@@ -1,13 +1,19 @@
 package com.proxy.test;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-/**
+
+import sun.misc.ProxyGenerator;
+
+/**jdk动态代理依赖接口实现
  * @author fengchao
  * @date 2017年1月21日
- * @注释  jdk动态代理依赖接口实现
+ * 此类相当于动态代理中的h实现
  */
+@SuppressWarnings("restriction")
 public class JdkProxy implements InvocationHandler {
 
 	Object target;
@@ -20,6 +26,7 @@ public class JdkProxy implements InvocationHandler {
 		System.out.println("前置代理");
 		Object res= method.invoke(target,args);
 		System.out.println("后置代理");
+		System.out.println(proxy.getClass().getName());          //代理类的名字
 		return res;
 	}
 	public static void main(String[] args) {
@@ -27,6 +34,29 @@ public class JdkProxy implements InvocationHandler {
 		targetClass target=new targetClass();
 		TestInterface protarget=(TestInterface) proxy.getProxy(target);      //这儿的强制类型转换只能转化为接口类型
 		protarget.say();
+//		JdkProxy.writeProxyToDisk("E:/$Proxy11.class");
+	}
+	/**将jdk动态代理生成的代理类写入硬盘测试
+	 * @param path
+	 */
+	public static void writeProxyToDisk(String path){
+		byte[] classFile=ProxyGenerator.generateProxyClass(
+                "com.sun.proxy.$Proxy0", new Class[]{ TestInterface.class},17);
+        FileOutputStream out = null;  
+          
+        try {  
+            out = new FileOutputStream(path);  
+            out.write(classFile);  
+            out.flush();  
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        } finally {  
+            try {  
+                out.close();  
+            } catch (IOException e) {  
+                e.printStackTrace();  
+            }  
+        } 
 	}
 }
 /**

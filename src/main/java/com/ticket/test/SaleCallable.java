@@ -2,6 +2,10 @@ package com.ticket.test;
 
 import java.util.concurrent.Callable;
 
+/**模拟售票流程
+ * @author fengchao
+ * @date 2017年7月17日
+ */
 public class SaleCallable<V> implements Callable<Integer> {
 
 	private int count = 15;
