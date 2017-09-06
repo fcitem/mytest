@@ -2,6 +2,10 @@ package com.jvm;
 
 import java.io.PrintStream;
 
+/**重写println方法实现改变输入输出
+ * @author fengchao
+ *
+ */
 public class ABtest {
 
 	public static void method(int a,int b){

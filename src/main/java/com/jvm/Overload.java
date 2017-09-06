@@ -27,7 +27,7 @@ public class Overload {
 	public static void main(String[] args) {
 		Overload p=new Overload();
 		Overload d=p.new Daughter();
-		Overload s=p.new Son();
+		Son s=p.new Son();
 		p.test(d);
 		p.test(s);
 	}

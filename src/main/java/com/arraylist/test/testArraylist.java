@@ -6,13 +6,6 @@ import java.util.List;
 public class TestArraylist {
 
 	public static void main(String[] args) {
-//		ArrayList<Integer> list=new ArrayList<Integer>();
-//		for (int i = 0; i < 10; i++) {
-//			list.add(i);
-//		}
-//		System.out.println(list.size());
-//		list.remove(0);
-//		System.out.println(list.size());
 		String name=new String("herllo");     //变量存储的是引用，而不是引用本身！及存的是引用字符串的引用的地址
 		System.out.println(name.getClass().hashCode());
 		new TestArraylist().test(name);
@@ -22,6 +15,7 @@ public class TestArraylist {
 		new TestArraylist().testStringBuilder(builder);
 		System.out.println(builder);
 		TestArraylist.testIterator();
+		new TestArraylist().testFinal();
 	}
 	public void test(String str){
 		str="fc";
@@ -29,6 +23,11 @@ public class TestArraylist {
 	}
 	public void testStringBuilder(StringBuilder builder){
 		builder.append("sds");
+	}
+	public synchronized final void testFinal() {
+		synchronized (this) {
+			System.out.println("this is final");
+		}
 	}
 	public static void testIterator(){
 		List<String> list=new ArrayList<>();

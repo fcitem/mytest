@@ -1,5 +1,7 @@
 package com.exception.test;
 
+import java.lang.reflect.UndeclaredThrowableException;
+
 public class ExceptionTest {
 
 	public static void main(String[] args) {
@@ -11,8 +13,8 @@ public class ExceptionTest {
 		String str=null;
 		try{
 			str.charAt(1);
-		}catch(Exception e){
-			System.out.println(e);
+		}catch(UndeclaredThrowableException e){
+			System.out.println(e.getUndeclaredThrowable());
 		}
 		return "hello";
 	}
