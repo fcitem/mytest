@@ -1,6 +1,6 @@
 package com.sort.test;
 
-/**
+/**时间复杂度:O(n^2),
  * @author fengchao
  * 冒泡排序
  */

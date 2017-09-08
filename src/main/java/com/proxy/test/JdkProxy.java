@@ -13,7 +13,6 @@ import sun.misc.ProxyGenerator;
  * @date 2017年1月21日
  * 此类相当于动态代理中的h实现
  */
-@SuppressWarnings("restriction")
 public class JdkProxy implements InvocationHandler {
 
 	Object target;
