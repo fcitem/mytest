@@ -17,6 +17,14 @@ public class TestArraylist {
 		TestArraylist.testIterator();
 		new TestArraylist().testFinal();
 	}
+	public int returnfinal(){
+		int number=1;
+		try{
+			return number;
+		}finally {
+			++number;
+		}
+	}
 	public void test(String str){
 		str="fc";
 		System.out.println(str.getClass().hashCode());
