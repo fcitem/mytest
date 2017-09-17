@@ -10,7 +10,6 @@ public class TestDemo extends test{
 		return new HashMap<K,V>();
 	}
 }
-//包访问权限
 class test{
 	public void sayHello(){
 		System.out.println("hello,World");

@@ -29,14 +29,11 @@ public class testArrayWithGen {
 
 	/**
 	 * @author fengchao
-	 * @param <T>
-	 * @data: 2016年11月12日
-	 * @注释：测试创建泛型数组，参数化类型数组或者类型参数的数组是否合法
 	 */
 	@Test
 	public <T> void test(T obj) {
-		//ArrayList<String>[] list=new ArrayList<String>[1];   //泛型数组非法
-		//T[] array=new T[2];             //创建参数化类型的数组或者类型参数的数组非法
+		//ArrayList<String>[] list=new ArrayList<String>[1];  
+		//T[] array=new T[2];             
 	}
 	public static <T extends Comparable<T>> T max(List<T> list){
 		List<Object> testlist=new ArrayList<Object>();

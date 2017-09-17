@@ -41,23 +41,19 @@ class work implements Runnable{
 	 * @param barr  同步辅助类
 	 */
 	public work(int number,CyclicBarrier barr) {
-		// TODO Auto-generated constructor stub
 		this.number=number;
 		this.barrier=barr;
 	}
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		System.out.println(number);
 		try {
 			barrier.await();
 			System.out.println(System.currentTimeMillis());
 			System.out.println("第 "+this.number+" 个任务执行完成");
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (BrokenBarrierException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

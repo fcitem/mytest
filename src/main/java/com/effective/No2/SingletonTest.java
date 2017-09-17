@@ -40,60 +40,52 @@ public class SingletonTest {
 	public void test() {
 		fail("Not yet implemented");
 	}
-	/**
-	 * @author fengchao
-	 * @throws ClassNotFoundException 
-	 * @data: 2016Äê10ÔÂ6ÈÕ
-	 * @×¢ÊÍ£º²âÊÔÍ¨¹ı·´Éä»úÖÆµ÷ÓÃË½ÓĞµÄ¹¹Ôìº¯ÊıÆÆ»µµ¥Àı
-	 */
 	@Test
 	public void testReflact() throws ClassNotFoundException{
 		Class<?> obj=Class.forName("com.effective.No2.SingleTon");
 		Constructor<?>[] constructor=obj.getDeclaredConstructors();
 		try {
-			constructor[0].setAccessible(true);   //¹Ø±Õ·ÃÎÊ¼ì²é£¬·ñÔò²»ÄÜµ÷ÓÃprivate·½·¨
+			constructor[0].setAccessible(true);   //ï¿½Ø±Õ·ï¿½ï¿½Ê¼ï¿½é£¬ï¿½ï¿½ï¿½ï¿½ï¿½Üµï¿½ï¿½ï¿½privateï¿½ï¿½ï¿½ï¿½
 			Object ton=(SingleTon) constructor[0].newInstance();
 			Method methord=obj.getMethod("sayHello");
-			methord.invoke(ton);              //³É¹¦µ÷ÓÃË½ÓĞ¹¹Ôìº¯Êı£¬¹¹Ôì³öÁËÒ»¸öĞÂµÄ¶ÔÏó
+			methord.invoke(ton);              //ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½Ë½ï¿½Ğ¹ï¿½ï¿½ìº¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ÂµÄ¶ï¿½ï¿½ï¿½
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	/**
 	 * @author fengchao
-	 * @data: 2016Äê10ÔÂ6ÈÕ
-	 * @×¢ÊÍ£º²âÊÔÍ¨¹ı¹¹Ôìº¯Êıµ÷ÓÃµÄÊ±ºò¼ì²éÊÇ·ñÓĞÊµÀı´æÔÚ£¬ÓĞÔòÅ×³öÒì³£À´±£»¤µ¥Àı
 	 */
 	@Test
 	public void testReflactWhithException() throws ClassNotFoundException, NoSuchMethodException, SecurityException{
 		Class<?> obj=Class.forName("com.effective.No2.SingleTon");
 		Constructor<?> constructor=obj.getDeclaredConstructor(String.class);
 		try {
-			constructor.setAccessible(true);   //¹Ø±Õ·ÃÎÊ¼ì²é£¬·ñÔò²»ÄÜµ÷ÓÃprivate·½·¨
+			constructor.setAccessible(true);   //ï¿½Ø±Õ·ï¿½ï¿½Ê¼ï¿½é£¬ï¿½ï¿½ï¿½ï¿½ï¿½Üµï¿½ï¿½ï¿½privateï¿½ï¿½ï¿½ï¿½
 			Object ton=(SingleTon) constructor.newInstance("asdas");
 			Method methord=obj.getMethod("sayHello");
-			methord.invoke(ton);              //³É¹¦µ÷ÓÃË½ÓĞ¹¹Ôìº¯Êı£¬¹¹Ôì³öÁËÒ»¸öĞÂµÄ¶ÔÏó
+			methord.invoke(ton);              //ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½Ë½ï¿½Ğ¹ï¿½ï¿½ìº¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ÂµÄ¶ï¿½ï¿½ï¿½
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	/**
 	 * @author fengchao
-	 * @data: 2016Äê10ÔÂ6ÈÕ
-	 * @×¢ÊÍ£º²âÊÔµ¥ÀıÔÚĞòÁĞ»¯Ê±£¬¿ØÖÆËùÓĞµÄÊµÀıÓò¶¼ÊÇË²Ê±µÄ£¬²¢ÇÒ±ØĞëÌí¼ÓreadResolve·½·¨£¨²»ÊÇÖØĞ´»òÕßÖØÔØ£©
-	 * ²âÊÔ½á¹ûÍ¨¹ı£¬±ØĞëÌí¼ÓreadResolve·½·¨£¬·ñÔòÃ¿´Î·´ĞòÁĞ»¯»áµÃµ½Ò»¸öĞÂ¶ÔÏó£¬ÆÆ»µµ¥Àı
+	 * @data: 2016ï¿½ï¿½10ï¿½ï¿½6ï¿½ï¿½
+	 * @×¢ï¿½Í£ï¿½ï¿½ï¿½ï¿½Ôµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ»ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğµï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë²Ê±ï¿½Ä£ï¿½ï¿½ï¿½ï¿½Ò±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½readResolveï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø£ï¿½
+	 * ï¿½ï¿½ï¿½Ô½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½readResolveï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½Î·ï¿½ï¿½ï¿½ï¿½Ğ»ï¿½ï¿½ï¿½Ãµï¿½Ò»ï¿½ï¿½ï¿½Â¶ï¿½ï¿½ï¿½ï¿½Æ»ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	@Test
 	public void testSerializableSingle(){
 		writeObject();
 		for (int i = 0; i < 5; i++) {
-			readObject();           //µ÷ÓÃ·´ĞòÁĞ»¯Èı´Î£¬¿´Ã¿´Î·µ»ØµÄÊµÀıÊÇ²»ÊÇÍ¬Ò»¸ö
+			readObject();           //ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½Ğ»ï¿½ï¿½ï¿½ï¿½Î£ï¿½ï¿½ï¿½Ã¿ï¿½Î·ï¿½ï¿½Øµï¿½Êµï¿½ï¿½ï¿½Ç²ï¿½ï¿½ï¿½Í¬Ò»ï¿½ï¿½
 		}
 	}
 	public void writeObject(){
 		try {
 			ObjectOutputStream out=new ObjectOutputStream(buffer);
-			out.writeObject(SingleTon.getInstance());    //ĞòÁĞ»¯·ÅÔÚ»º´æÀïÃæ
+			out.writeObject(SingleTon.getInstance());    //ï¿½ï¿½ï¿½Ğ»ï¿½ï¿½ï¿½ï¿½Ú»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -102,25 +94,19 @@ public class SingletonTest {
 		ByteArrayInputStream in=new ByteArrayInputStream(buffer.toByteArray());
 		try {
 			ObjectInputStream input=new ObjectInputStream(in);
-			SingleTon ton=(SingleTon) input.readObject();         //·´ĞòÁĞ»¯
+			SingleTon ton=(SingleTon) input.readObject();         //ï¿½ï¿½ï¿½ï¿½ï¿½Ğ»ï¿½
 			System.out.println(ton);
 			ton.sayHello();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	/**
-	 * @author fengchao
-	 * @data: 2016Äê10ÔÂ6ÈÕ
-	 * @×¢ÊÍ£º¶ÔÓÚÃ¿¸öÏàÍ¬µÄÏß³Ì·µ»ØÒ»¸öÎ¨Ò»µÄÊµÀı£¬½èÖúÓÚÏß³Ì¶ÀÓĞµÄThreadLocal
-	 */
 	@Test
 	public void testThreadSingle(){
 		for (int i = 0; i < 5; i++) {
-			new threadSingle();     //´´½¨5¸ö²»Í¬µÄÏß³Ì£¬Ã¿¸öÏß³ÌÈ¡Á½´Îµ¥Àı¶ÔÏó
+			new threadSingle();     
 		}
 		try {
-//ÉèÖÃ´ËÏß³ÌĞİÃß20ÃëÒªµÈÉÏÃæµÄ5¸öÏß³ÌÖ´ĞĞÍê±Ï£¬ÒòÎª´ËÏß³Ì²»ÊÇºóÌ¨Ïß³Ì£¬²»»áµÈÉÏÃæ5¸öÏß³ÌÖ´ĞĞÍê±Ï£¬µ«ÎªÊ²Ã´´ËÏß³Ì½áÊø¾ÍÉ±ËÀÆäËûµÄ·ÇºóÌ¨Ïß³Ì³ÌĞòÍË³öÁË£¿¹À¼ÆÕâ¾ÍÊÇjunitµÄÌØ±ğÖ®´¦°É
 			Thread.sleep(20000);   
 		} catch (InterruptedException e) {
 			e.printStackTrace();
