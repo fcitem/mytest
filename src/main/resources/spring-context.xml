@@ -8,7 +8,8 @@
 		http://www.example.org/customTag http://www.example.org/customTag.xsd">
 
 	<description>Spring Configuration</description>
-	<mytag:jedis id="test" host="192.168.0.37" port="6379" password="123456" />
+	<!--  修改非 /结束-->
+	<mytag:jedis id="test" host="192.168.0.37" port="6379" password="123456">4
 	<!-- <mytag:jedispool> <maxIdle>300</maxIdle> </mytag:jedispool> -->
-	<!-- </mytag:jedis> -->
+	</mytag:jedis>
 </beans>

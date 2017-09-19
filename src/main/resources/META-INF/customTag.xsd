@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema"
-	xmlns:tns="http://www.example.org/customTag/"
-	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://www.example.org/customTag/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	targetNamespace="http://www.example.org/customTag" elementFormDefault="qualified">
 	<xsd:import namespace="http://www.w3.org/2001/XMLSchema"></xsd:import>
 	<xsd:annotation>
 		<xsd:appinfo>W3CSchool Note</xsd:appinfo>
 		<xsd:documentation xml:lang="en">
-			This Schema defines a customer tag note!
+			This Schema defines a
+			customer tag note!
 		</xsd:documentation>
 	</xsd:annotation>
 	<xsd:attributeGroup name="jedisAttributes">
@@ -21,9 +21,27 @@
 		<!-- timeout非必须 -->
 		<xsd:attribute name="timeout" type="string"></xsd:attribute>
 	</xsd:attributeGroup>
+	<xsd:complexType name="complex" abstract="false">
+		<xsd:sequence>
+			<xsd:element name="maxIdle" type="string"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
 	<xsd:element name="jedis">
 		<xsd:complexType>
-			<xsd:attributeGroup ref="jedisAttributes"></xsd:attributeGroup>
+			<xsd:complexContent>
+				<xsd:extension base="complex">
+					<xsd:attribute name="id" type="string"></xsd:attribute>
+					<!-- host 为必须 -->
+					<xsd:attribute name="host" type="string" use="required"></xsd:attribute>
+					<!-- port 非必须，默认端口6379 -->
+					<xsd:attribute name="port" type="string" default="6379"></xsd:attribute>
+					<!-- password非必须 -->
+					<xsd:attribute name="password" type="string"></xsd:attribute>
+					<!-- timeout非必须 -->
+					<xsd:attribute name="timeout" type="string"></xsd:attribute>
+				</xsd:extension>
+			</xsd:complexContent>
+			<!-- <xsd:attributeGroup ref="jedisAttributes"></xsd:attributeGroup> -->
 			<!-- <xsd:sequence> <xsd:element name="jedispool"> <xsd:complexType> <xsd:sequence> 
 				<xsd:element name="maxIdle" type="string"></xsd:element> <xsd:element name="maxTotal" 
 				type="string"></xsd:element> <xsd:element name="testOnBorrow" type="string"></xsd:element> 
