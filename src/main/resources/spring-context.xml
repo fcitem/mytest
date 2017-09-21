@@ -9,7 +9,11 @@
 
 	<description>Spring Configuration</description>
 	<!--  修改非 /结束-->
-	<mytag:jedis id="test" host="192.168.0.37" port="6379" password="123456">4
-	<!-- <mytag:jedispool> <maxIdle>300</maxIdle> </mytag:jedispool> -->
-	</mytag:jedis>
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxIdle" value="300" /> <!-- 最大能够保持idel状态的对象数  -->
+		<property name="maxTotal" value="60000" /> <!-- 最大分配的对象数 -->
+		<property name="testOnBorrow" value="true" /> <!-- 当调用borrow Object方法时，是否进行有效性检查 -->
+	</bean>
+	<mytag:jedis id="test" host="192.168.0.37" port="6379" password="123456" ref="jedisPoolConfig" />
+	<!-- </mytag:jedis> -->
 </beans>

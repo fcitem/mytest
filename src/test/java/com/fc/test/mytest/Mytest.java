@@ -1,14 +1,21 @@
 package com.fc.test.mytest;
 
-import java.io.IOException;
-
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import redis.clients.jedis.JedisPool;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:spring-context.xml")
 public class Mytest {
 
+	@Autowired
+	JedisPool jedisPool;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -19,13 +26,7 @@ public class Mytest {
 
 	@Test
 	public void test() {
-		ClassPathXmlApplicationContext context=new ClassPathXmlApplicationContext("spring-context.xml");
-		context.start();
-		try {
-			System.in.read();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		System.out.println(jedisPool.getResource());
 	}
 
 }
