@@ -1,0 +1,58 @@
+private String caseSql(QueryTodayAlarmBean queryTodayAlarmBean){
+		String alarmCase=queryTodayAlarmBean.getCaseType();   //大类
+		String portCase=queryTodayAlarmBean.getCaseType();   //二级
+		String kindCase=queryTodayAlarmBean.getCaseKind();   //三级
+		StringBuilder builder=new StringBuilder();
+		Map<String,Map<String,List<String>>> map=new HashMap<String, Map<String,List<String>>>();
+		//vc64_02
+		if (!StringUtils.isNull(alarmCase) && alarmCase.length() > 1){
+			String[] strs=alarmCase.split(";");
+			StringBuilder cases=new StringBuilder();
+			cases.append(" and vc64_02 in(");
+			for (String string : strs) {
+				cases.append("'").append(string).append("'").append(",");
+			}
+			String cas=cases.substring(0, cases.length()-1)+")";
+		}
+		//vc64_03
+		if (!StringUtils.isNull(portCase) && portCase.length() > 1){
+			String[] strs=portCase.split(";");
+			StringBuilder cases=new StringBuilder();
+			cases.append(" and vc64_03 in(");
+			for (String string : strs) {
+				cases.append("'").append(string).append("'").append(",");
+			}
+			String cas=cases.substring(0, cases.length()-1)+")";
+		}
+		//vc64_06
+		if (!StringUtils.isNull(kindCase) && kindCase.length() > 1){
+			String[] strs=kindCase.split(";");
+			StringBuilder cases=new StringBuilder();
+			cases.append(" and vc64_02 in(");
+			for (String string : strs) {
+				getWhereStrByKind(string,3, map);
+			}
+			StringBuilder bu=new StringBuilder();
+			for (Entry<String, Map<String, List<String>>> mapEntry : map.entrySet()) {
+				cases.append("((vc64_02 =");  //大类筛选
+				cases.append("'").append(mapEntry.getKey()).append("'");
+//				StringBuilder s=new StringBuilder();
+				for (Entry<String,List<String>> maps : mapEntry.getValue().entrySet()) {
+					if(bu.length()==0){       //中类筛选
+						bu.append(" and");
+					}
+					bu.append(" ((vc64_03 =");
+					bu.append("'").append(maps.getKey()).append("'");
+					bu.append(" and vc64_06 in(");
+					for (String string : maps.getValue()) {
+						bu.append("'").append(string).append("',");
+					}
+					bu.append(cases.substring(0, cases.length()-1)+")");
+					bu.append(")");
+					bu.append(" or");
+				}
+			}
+			String cas=cases.substring(0, cases.length()-1)+")";
+		}
+		return "";
+	}
