@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class TestArraylist {
+public class Arraylist {
 
 	public static void main(String[] args) {
 		String name=new String("herllo");     //变量存储的是引用，而不是引用本身！及存的是引用字符串的引用的地址
 		System.out.println(name.getClass().hashCode());
-		new TestArraylist().test(name);
+		new Arraylist().test(name);
 		System.out.println(name.getClass().hashCode());
 		System.out.println(name);
 		StringBuilder builder=new StringBuilder("sds");
-		new TestArraylist().testStringBuilder(builder);
+		new Arraylist().testStringBuilder(builder);
 		System.out.println(builder);
-		TestArraylist.testForEach();
+		Arraylist.testForEach();
 		testIterator();
-		new TestArraylist().testFinal();
+		new Arraylist().testFinal();
 	}
 	public int returnfinal(){
 		int number=1;
