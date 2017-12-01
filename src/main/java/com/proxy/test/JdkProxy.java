@@ -66,7 +66,14 @@ public class JdkProxy implements InvocationHandler {
  */
 class targetClass implements TestInterface{
 	
+	/* 
+	 * 方法内部调用方法，不能被代理
+	 */
 	public void say(){
+		test();
 		System.out.println("hello world");
+	}
+	public void test(){
+		System.out.println("hihi");
 	}
 }

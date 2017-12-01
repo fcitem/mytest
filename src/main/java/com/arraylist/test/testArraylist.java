@@ -1,6 +1,7 @@
 package com.arraylist.test;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class TestArraylist {
@@ -14,7 +15,8 @@ public class TestArraylist {
 		StringBuilder builder=new StringBuilder("sds");
 		new TestArraylist().testStringBuilder(builder);
 		System.out.println(builder);
-		TestArraylist.testIterator();
+		TestArraylist.testForEach();
+		testIterator();
 		new TestArraylist().testFinal();
 	}
 	public int returnfinal(){
@@ -37,7 +39,10 @@ public class TestArraylist {
 			System.out.println("this is final");
 		}
 	}
-	public static void testIterator(){
+	/**
+	 * list在foreach循环中可以移除倒数第二个元素
+	 */
+	public static void testForEach(){
 		List<String> list=new ArrayList<>();
 		list.add("1");
 		list.add("2");
@@ -45,6 +50,22 @@ public class TestArraylist {
 		for (String string : list) {
 			if("2".equals(string)){
 				list.remove(string);
+			}
+		}
+	}
+	public static void testIterator(){
+		List<String> list=new ArrayList<>();
+		list.add("1");
+		list.add("2");
+		list.add("3");
+		list.add("4");
+		Iterator<String> it=list.iterator();
+		while(it.hasNext()){
+			String str=it.next();
+			System.out.println(str);
+			if(str.equals("2")){
+//				list.remove("2");   //报错
+				it.remove();
 			}
 		}
 	}

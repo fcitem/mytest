@@ -6,6 +6,11 @@ import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
 
+/**Cglib动态代理实现
+ * Cglib是通过生成子类的方式生成代理类，可以解决方法内部调用方法走代理
+ * @author fengchao
+ *
+ */
 public class CglibProxy implements MethodInterceptor {
 
 	Object target;
@@ -30,7 +35,14 @@ public class CglibProxy implements MethodInterceptor {
 	}
 }
 class testClass{
+	/**
+	 * 方法内部调用其它方法会依然被代理，private不行
+	 */
 	public void say(){
+		test();
 		System.out.println("hello world");
+	}
+	public void test(){
+		System.out.println("hihi");
 	}
 }
