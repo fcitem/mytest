@@ -26,33 +26,50 @@ private String caseSql(QueryTodayAlarmBean queryTodayAlarmBean){
 		}
 		//vc64_06
 		if (!StringUtils.isNull(kindCase) && kindCase.length() > 1){
-			String[] strs=kindCase.split(";");
-			StringBuilder cases=new StringBuilder();
-			cases.append(" and vc64_02 in(");
+			String[] strs=kindCase.split(";");    //获取细类id
+			StringBuilder sql=new StringBuilder();    //最终条件sql
+			sql.append(" and (");
 			for (String string : strs) {
 				getWhereStrByKind(string,3, map);
 			}
-			StringBuilder bu=new StringBuilder();
+			StringBuilder seconds=new StringBuilder();
 			for (Entry<String, Map<String, List<String>>> mapEntry : map.entrySet()) {
-				cases.append("((vc64_02 =");  //大类筛选
-				cases.append("'").append(mapEntry.getKey()).append("'");
-//				StringBuilder s=new StringBuilder();
+				sql.append("(vc64_02 =");  //大类筛选
+				sql.append("'").append(mapEntry.getKey()).append("'");       //相当于 vc64_02 ='123'
+                sql.append("and (");           //开始拼接中类
 				for (Entry<String,List<String>> maps : mapEntry.getValue().entrySet()) {
-					if(bu.length()==0){       //中类筛选
-						bu.append(" and");
-					}
-					bu.append(" ((vc64_03 =");
-					bu.append("'").append(maps.getKey()).append("'");
-					bu.append(" and vc64_06 in(");
+			//		if(bu.length()==0){       //中类筛选
+			//			bu.append(" and");
+			//		}
+					sql.append(" (vc64_03 =");
+					sql.append("'").append(maps.getKey()).append("'");      //相当于 vc64_03='456'
+					sql.append(" and vc64_06 in(");           //开始拼接细类
 					for (String string : maps.getValue()) {
-						bu.append("'").append(string).append("',");
+						sql.append("'").append(string).append("',");
 					}
-					bu.append(cases.substring(0, cases.length()-1)+")");
-					bu.append(")");
-					bu.append(" or");
+					//去掉细类里面最后的,加括号
+					sql.append(sql.substring(0, sql.length()-1)+")");
+					sql.append(")");
+					sql.append(" or");
 				}
+				//去掉中类最后的or
+				if(sql.endsof("or")){
+				    sql.replace(sql.length()-2,sql.length(), "");
+				}
+				sql.append(")) or");
 			}
-			String cas=cases.substring(0, cases.length()-1)+")";
+			//去掉大类最后的or
+			if(sql.endsof("or")){
+				    sql.replace(sql.length()-2,sql.length(), "");
+			}
+			sql.append(")");
 		}
 		return "";
 	}
+	
+	<!-- 效果sql -->
+	and (
+       (vc64_02 ='123' and ((vc64_03='456' and vc64_06 in('011','546') )or (vc_64_03='789' and vc64_06 in('011','546'))))
+	 or (vc64_02 ='888' and ((vc64_03='456' and vc64_06 in('011','546') )or (vc_64_03='789' and vc64_06 in('011','546'))))
+	 or (vc64_02 ='975' and ((vc64_03='456' and vc64_06 in('011','546') )or (vc_64_03='789' and vc64_06 in('011','546'))))
+	 )
