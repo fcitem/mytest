@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class test {
+public class Test {
 
 	public static void main(String[] args) {
 		String str=new StringBuilder("fc").append("test").toString();
@@ -31,10 +31,8 @@ public class test {
 				){
 			System.out.println();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
