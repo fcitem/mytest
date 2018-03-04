@@ -11,7 +11,8 @@ public class Base {
 		}
 	}
 	public void print(){
-		
+		int number=1;
+		long lnumber=number;
 	}
 	public static void main(String[] args) {
 		int number=test();

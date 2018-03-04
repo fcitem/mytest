@@ -20,6 +20,7 @@ public class DateType {
 		float fnum=4.56f;
 		short st=2;
 		byte bb=12;
+		System.out.println("int类型范围max:"+Integer.MAX_VALUE);
 		System.out.println("double类型范围max:"+Double.MAX_VALUE);
 		System.out.println("double类型范围min:"+Double.MIN_VALUE);
 		System.out.println("long类型范围max:"+Long.MAX_VALUE);
