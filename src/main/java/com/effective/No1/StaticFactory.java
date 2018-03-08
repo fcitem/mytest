@@ -1,7 +1,5 @@
 package com.effective.No1;
 
-import static org.junit.Assert.*;
-
 import java.util.HashMap;
 
 import org.junit.After;
@@ -10,7 +8,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class staticFactory {
+public class StaticFactory {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -28,10 +26,10 @@ public class staticFactory {
 	public void tearDown() throws Exception {
 	}
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
+	/**
+	 * 测试面向接口,通过工厂方法的方式获得一个实例对象,但是这个对象不必是public的
+	 * 静态工厂返回的类不必是公有的
+	 */
 	@Test
 	public void testReturnPrivate(){
 		TestDemo.getPrivateClass().sayHello();
@@ -41,5 +39,6 @@ public class staticFactory {
 	public void testTyjpe(){
 		HashMap<String,String> map=TestDemo.newHashMap();
 		map.put("fc", "001");
+		String.valueOf("d");
 	}
 }
