@@ -9,6 +9,7 @@ public class TestDuotaiDemo {
 	     D d = new D();
 	     System.out.println(a1.show(b));  //A and A
 	     System.out.println(a1.show(c));  //A and A
+//	     System.out.println(a1.show(a2));   //动态单分派,根据传进去参数的声明类型确定重写方法
 	     System.out.println(a1.show(d));  //A and D
 	     System.out.println(a2.show(b));  //B and A
 	     System.out.println(a2.show(c));  //B and A
