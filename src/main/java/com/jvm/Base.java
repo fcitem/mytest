@@ -1,6 +1,8 @@
 package com.jvm;
 
-public class Base {
+import java.util.LinkedHashMap;
+
+public class Base<T> {
 	
 	public static int test(){
 		int i=0;
@@ -12,6 +14,7 @@ public class Base {
 	}
 	public void print(){
 		int number=1;
+		@SuppressWarnings("unused")
 		long lnumber=number;
 	}
 	public static void main(String[] args) {
@@ -24,6 +27,10 @@ public class Base {
 		Integer a=150,b=150;      //integer不同于int,Integer对于大于128的int会重新创建，低于128的直接复用
 		System.out.println(a==b);
 		System.out.println(a.equals(b));
+		LinkedHashMap<String,String> map=new LinkedHashMap<>();
+		map.put(null,"1");
+		map.put(null, null);
+		System.out.println(map.keySet());
 	}
 
 }
@@ -31,7 +38,7 @@ public class Base {
  * @author fengchao
  *
  */
-class Son extends Base{
+class Son extends Base<Object>{
 	public Son() {
 	}
 	public Son(String str){
