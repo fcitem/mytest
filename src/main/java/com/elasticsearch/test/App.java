@@ -18,9 +18,11 @@ public class App {
 	
 	TransportClient client;
 	
+	@SuppressWarnings("resource")
 	@Before
 	public void init() throws UnknownHostException {
-		Settings settings=Settings.builder().build();
+		Settings settings=Settings.builder().put("cluster.name","test")  //集群名
+				 .build();
 		client=new PreBuiltTransportClient(settings).addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("120.78.222.34"),9300));
 	}
 
@@ -45,10 +47,17 @@ public class App {
 	     map.put("password", "123456");
 	     EsOpUtils.pushData(builder,map);
 	}
-	
+	@Test
+	public void createIndexList() {
+	     Map<String,Object> map=new HashMap<String, Object>();
+	     map.put("name", "fc5");
+	     map.put("password", "123456");
+	     EsOpUtils.pushDataList(client,map);
+//	     EsOpUtils.pushDataOther(client, map);
+	}
 	@Test
 	public void testGet() {
-		String ret=EsOpUtils.getData(client, "users", "user","1");
+		String ret=EsOpUtils.getData(client, "test", "users","123");
 		System.out.println(ret);
 	}
 	
@@ -56,5 +65,14 @@ public class App {
 	public void testGetByIndex() {
 		List<String> ret=EsOpUtils.getDataList(client, "users", "user");
 		System.out.println(ret);
+	}
+	@Test
+	public void testDelete() {
+		long count=EsOpUtils.deleteData(client);
+		System.out.println("删除匹配的"+count+"个元素");
+	}
+	@Test
+	public void testQueryByBuilder() {
+		EsOpUtils.query(client);
 	}
 }
