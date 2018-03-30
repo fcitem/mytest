@@ -11,8 +11,8 @@ public class Arraylist {
         System.out.println(name.getClass().hashCode());
         new Arraylist().test(name);
         System.out.println(name.getClass().hashCode());
-        System.out.println("sdfsd");
-        StringBuilder builder = new StringBuilder("sds");
+        System.out.println(name);
+        StringBuilder builder = new StringBuilder("haha");
         new Arraylist().testStringBuilder(builder);
         System.out.println(builder);
         Arraylist.testForEach();
