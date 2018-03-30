@@ -11,7 +11,7 @@ public class Arraylist {
         System.out.println(name.getClass().hashCode());
         new Arraylist().test(name);
         System.out.println(name.getClass().hashCode());
-        System.out.println(name);
+        System.out.println("haha");
         StringBuilder builder = new StringBuilder("sds");
         new Arraylist().testStringBuilder(builder);
         System.out.println(builder);
