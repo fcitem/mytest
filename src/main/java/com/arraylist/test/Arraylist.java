@@ -7,12 +7,12 @@ import java.util.List;
 public class Arraylist {
 
     public static void main(String[] args) {
-        String name = new String("herllo");     //变量存储的是引用，而不是引用本身！及存的是引用字符串的引用的地址
+        String name = new String("hello");     //变量存储的是引用，而不是引用本身！及存的是引用字符串的引用的地址
         System.out.println(name.getClass().hashCode());
         new Arraylist().test(name);
         System.out.println(name.getClass().hashCode());
         System.out.println(name);
-        StringBuilder builder = new StringBuilder("sdsd");
+        StringBuilder builder = new StringBuilder("haha");
         new Arraylist().testStringBuilder(builder);
         System.out.println(builder);
         Arraylist.testForEach();
