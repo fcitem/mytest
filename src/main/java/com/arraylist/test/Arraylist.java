@@ -12,7 +12,7 @@ public class Arraylist {
         new Arraylist().test(name);
         System.out.println(name.getClass().hashCode());
         System.out.println(name);
-        StringBuilder builder = new StringBuilder("sd");
+        StringBuilder builder = new StringBuilder("hasd");
         new Arraylist().testStringBuilder(builder);
         System.out.println(builder);
         Arraylist.testForEach();
